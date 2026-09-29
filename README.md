@@ -1,35 +1,32 @@
 # 移动奶龙 / Mobile Nailong
 
-第三个作品。行李箱躺平当 **配重 + 载重底盘**，奶龙立牌 **绑在箱子顶面**，手机遥控走，可选跟随主人手机。
+行李箱躺平 = 配重 + 载重车。立牌 **1.6 m** 绑在箱顶。V1 拆原装轮、整箱扎在成品底盘上，**不考虑打开箱子**。
 
-仓库：https://github.com/Dalaoyuan2020/mobile-nailong
+https://github.com/Dalaoyuan2020/mobile-nailong
 
-不和 [wake-the-dust](https://github.com/Dalaoyuan2020/wake-the-dust) 混。那是哑铃贴片。
+## 从这开始
 
-## 一句话
+1. [docs/LAYERS.md](docs/LAYERS.md) — 分层
+2. [docs/TASKS.md](docs/TASKS.md) — 勾选
+3. [docs/CHASSIS.md](docs/CHASSIS.md) — V1 买哪种底盘
+4. [docs/PHYSICS.md](docs/PHYSICS.md) — 重心
+5. [docs/PROMPT_CASE_FIRST.md](docs/PROMPT_CASE_FIRST.md) — 本地建模箱壳
+6. [docs/PROMPT_STAND_HANDLE.md](docs/PROMPT_STAND_HANDLE.md) — 拉杆与 1.6 m 立牌
 
-一个能遥控的立牌行李箱。技术主轴是一人高的板在走的时候不倒。
+## 锁定
 
-## 文档
+- 箱：26 寸优先，24 备选
+- 板：1.6 m × 0.5 m
+- 底盘：买 20 kg 级成品遥控底盘（250–450）；本轮已有则保留，没有则不新建
+- V1 不开箱；V2 再改开盖
+- 箱子躺在最大面上，不竖着走。
+- 立牌绑在箱顶，不插进箱里，不做人字牌。
+- 先遥控，再跟随，再语音。
 
-| 文件 | 用途 |
-|---|---|
-| [docs/PLAN.md](docs/PLAN.md) | 锁定的方案 |
-| [docs/DIMENSIONS.md](docs/DIMENSIONS.md) | 24 / 26 寸待机尺寸 |
-| [docs/CAD_PROMPT.md](docs/CAD_PROMPT.md) | 整机后续轮次 prompt |
-| [docs/CAD_PROMPT.en.md](docs/CAD_PROMPT.en.md) | 整机后续轮次 prompt（英文） |
-| [docs/ELECTRONICS.md](docs/ELECTRONICS.md) | 电控与防倾 |
+## 已有箱壳
 
-本轮入口：[先只出箱子的可粘贴 prompt](docs/PROMPT_CASE_FIRST.md)。本轮仅做 720×470×290 mm 的 26 寸两半箱壳，底壳高 170 mm、箱盖高 120 mm；轮子、底盘、电控和立牌留待下一轮。参数化源文件、STL / STEP 与外形预览放在 [`cad/case26/`](cad/case26/)，尺寸及复现方式见 [`NOTES.md`](cad/case26/NOTES.md)。
+720×470×290 mm 的 26 寸两半箱壳，底壳高 170 mm、箱盖高 120 mm；轮距 400 mm、轴距 540 mm。参数化源文件、STL / STEP 与外形预览见 [`cad/case26/`](cad/case26/)，尺寸及复现方式见 [`NOTES.md`](cad/case26/NOTES.md)。
 
 ![26 寸箱壳首版](cad/case26/case26_preview.png)
 
 [底部平台与后端细节](cad/case26/case26_details.png)
-
-## 当前锁定
-
-- 箱子躺在最大面上，不竖着走。
-- 立牌绑在箱顶，不插进箱里，不做人字牌。
-- 底盘代替原装万向轮。
-- 先遥控，再跟随，再语音。
-- 演示皮肤可以是奶龙；能卖的是通用立牌箱底盘。
