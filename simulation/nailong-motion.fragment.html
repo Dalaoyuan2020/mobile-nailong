@@ -1,0 +1,177 @@
+<div id="nailong-motion" class="nailong-motion">
+  <h3>竖箱低速移动：配重与稳定性</h3>
+  <div class="viz-controls">
+    <label class="form-label" for="nm-height">立牌高度 <output id="nm-height-value" class="tabular-nums">1.6 m</output><select id="nm-height" class="form-select"><option value="1.6">1.6 m</option><option value="1.7">1.7 m</option><option value="1.8">1.8 m</option></select></label>
+    <label class="form-label" for="nm-ballast">低位配重 <output id="nm-ballast-value" class="tabular-nums">6.0 kg</output><input id="nm-ballast" class="form-range" type="range" min="0" max="8" step="0.5" value="6"></label>
+    <label class="form-label" for="nm-speed">前进速度 <output id="nm-speed-value" class="tabular-nums">0.30 m/s</output><input id="nm-speed" class="form-range" type="range" min="0" max="0.6" step="0.05" value="0.3"></label>
+    <label class="form-label" for="nm-radius">左转半径 <output id="nm-radius-value" class="tabular-nums">1.5 m</output><input id="nm-radius" class="form-range" type="range" min="1.5" max="5" step="0.1" value="1.5"></label>
+    <label class="form-label" for="nm-wind">不利方向风速 <output id="nm-wind-value" class="tabular-nums">0.0 m/s</output><input id="nm-wind" class="form-range" type="range" min="0" max="8" step="0.5" value="0"></label>
+  </div>
+  <div class="viz-row nm-metrics" aria-live="polite">
+    <span>断连停距 <strong id="nm-stop" class="tabular-nums"></strong></span>
+    <span>最小支撑余量 <strong id="nm-margin" class="tabular-nums"></strong></span>
+    <span>重心离地 <strong id="nm-cg" class="tabular-nums"></strong></span>
+  </div>
+  <div id="nm-figure"><svg class="nm-diagram" role="img" aria-labelledby="nm-title nm-desc"><title id="nm-title">前进左转轨迹与轮底支撑示意</title><desc id="nm-desc">左侧显示后驱动轴中心前进六秒后制动停车的路径，右侧显示四个轮接地点形成的支撑范围、重心投影和最不利合力投影。</desc><g id="nm-layer"></g></svg></div>
+  <div id="nm-detail" class="text-small" aria-live="polite"></div>
+</div>
+<style>
+#nailong-motion { color:var(--foreground); }
+#nailong-motion strong { font-weight:500; }
+#nailong-motion .nm-diagram { width:100%; display:block; overflow:visible; }
+#nailong-motion .nm-diagram text { fill:var(--foreground); }
+#nailong-motion .nm-structure { fill:none; stroke:var(--border); stroke-width:1.5; }
+#nailong-motion .nm-path { fill:none; stroke:var(--viz-series-1); stroke-width:3; }
+#nailong-motion .nm-stop-path { fill:none; stroke:var(--viz-series-2); stroke-width:3; stroke-dasharray:5 4; }
+#nailong-motion .nm-body { fill:var(--muted); stroke:var(--foreground); stroke-width:1; }
+#nailong-motion .nm-board { stroke:var(--viz-series-1); stroke-width:4; }
+#nailong-motion .nm-cg-point { fill:var(--viz-series-1); }
+#nailong-motion .nm-resultant { stroke:var(--viz-series-2); stroke-width:2.5; fill:none; }
+#nailong-motion .nm-wheel { fill:var(--foreground); }
+#nailong-motion .nm-negative { color:var(--destructive); }
+</style>
+<script>
+(() => {
+  function initialize() {
+  const root = document.getElementById('nailong-motion');
+  if (!root) return false;
+  if (root.dataset.initialized === 'true') return true;
+  const svg = root.querySelector('.nm-diagram');
+  const layer = root.querySelector('#nm-layer');
+  if (!svg || !layer) return false;
+  root.dataset.initialized = 'true';
+  const defaults = {height:1.6,ballast:6,speed:0.3,radius:1.5,wind:0};
+  let state = {...defaults};
+  const ns = 'http://www.w3.org/2000/svg';
+  const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+  const limits = {height:[1.6,1.8],ballast:[0,8],speed:[0,0.6],radius:[1.5,5],wind:[0,8]};
+  const masses = [[4.5,0,0,0.43],[1.2,-0.05,0,0.14],[1.8,0,0,0.08],[0.5,0.139,0,0.9]];
+  function compute(s) {
+    const scale=s.height/1.6, boardArea=0.7797364734034835*scale*scale;
+    const boardMass=1.5*scale*scale, boardZ=0.02+0.8178348155171905*scale;
+    const parts = [...masses,[s.ballast,-0.03,0,0.12],[boardMass,0.149,0.007421912746515794*scale,boardZ]];
+    const mass = parts.reduce((a,p)=>a+p[0],0);
+    const cg = [1,2,3].map(k=>parts.reduce((a,p)=>a+p[0]*p[k],0)/mass);
+    const force = 0.5*1.225*1.2*boardArea*s.wind*s.wind;
+    const shiftX = 0.25*cg[2]/9.81+force*boardZ/(mass*9.81);
+    const shiftY = s.speed*s.speed/s.radius*cg[2]/9.81;
+    const x = Math.abs(cg[0])+shiftX, y = Math.abs(cg[1])+shiftY;
+    const marginX = 0.105-x, marginY=0.2-y;
+    const stop = s.speed*0.2+s.speed*s.speed/(2*0.25);
+    const rpm = [s.speed*(1-0.2/s.radius),s.speed*(1+0.2/s.radius)].map(v=>v*60/(Math.PI*0.05));
+    return {mass,cg,force,marginX,marginY,x,y,stop,rpm,boardArea,boardMass,boardZ,boardWidth:0.792206464629091*scale};
+  }
+  function el(tag,attrs,text) {
+    const node=document.createElementNS(ns,tag);
+    Object.entries(attrs||{}).forEach(([k,v])=>node.setAttribute(k,v));
+    if(text!==undefined) node.textContent=text;
+    layer.appendChild(node); return node;
+  }
+  function label(x,y,text,anchor='start') { return el('text',{x,y,'text-anchor':anchor,class:'text-small'},text); }
+  function path(points,cls) { return el('path',{d:points.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+','+p[1].toFixed(2)).join(' '),class:cls}); }
+  function draw() {
+    const m=compute(state), width=Math.max(280,root.clientWidth), narrow=width<560;
+    const height=narrow?605:335;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    layer.textContent = '';
+    const pw=narrow?width:width*0.55, ph=narrow?280:300;
+    label(0,22,'后驱动轴轨迹 · 6 s 后制动');
+    const travel=state.speed*6, total=travel+m.stop;
+    const samples=Array.from({length:61},(_,i)=>total*i/60);
+    const world=s=>[state.radius*Math.sin(s/state.radius),state.radius*(1-Math.cos(s/state.radius))];
+    const points=samples.map(world);
+    const maxX=Math.max(1.25,...points.map(p=>p[0]))+0.5, maxY=Math.max(0.5,...points.map(p=>p[1]))+0.5;
+    const scale=Math.min((pw-80)/maxY,(ph-90)/maxX);
+    const map=([x,y])=>[pw-60-y*scale,ph-25-x*scale];
+    const origin=map([0,0]), end=map(world(total));
+    path([map([maxX-0.2,0]),origin,map([0,maxY-0.2])],'nm-structure');
+    label(origin[0]-2,50,'+X 前', 'end');
+    label(6,ph-13,'左 +Y');
+    path(Array.from({length:41},(_,i)=>map(world(travel*i/40))),'nm-path');
+    path(Array.from({length:21},(_,i)=>map(world(travel+m.stop*i/20))),'nm-stop-path');
+    el('circle',{cx:origin[0],cy:origin[1],r:3,class:'nm-cg-point'});
+    label(origin[0]-7,origin[1]+16,'起点','end');
+    const theta=total/state.radius;
+    const body=el('g',{transform:`translate(${end[0]},${end[1]}) rotate(${-theta*180/Math.PI})`});
+    const add=(tag,attrs)=>{const n=el(tag,attrs);body.appendChild(n);};
+    add('rect',{x:-0.235*scale,y:-0.25*scale,width:0.47*scale,height:0.29*scale,rx:3,class:'nm-body'});
+    add('line',{x1:-m.boardWidth/2*scale,y1:-0.25*scale,x2:m.boardWidth/2*scale,y2:-0.25*scale,class:'nm-board'});
+    [-0.2,0.2].forEach(y=>add('rect',{x:y*scale-2,y:-3,width:4,height:6,class:'nm-wheel'}));
+    const bar=Math.min(0.5,((pw-80)/scale));
+    path([[20,ph-48],[20+bar*scale,ph-48]],'nm-structure'); label(20,ph-55,`${bar.toFixed(1)} m`);
+    const insetX=narrow?0:pw+16, insetY=narrow?310:0, iw=narrow?width:width-pw-16;
+    label(insetX,insetY+22,'轮底支撑 · 俯视放大');
+    const cw=Math.min(iw-52,220), maxContactX=Math.max(0.16,m.x+0.05);
+    const cs=Math.min(cw/0.4,135/(maxContactX+0.14)), cx=insetX+iw/2, cy=insetY+65+maxContactX*cs;
+    const contact=([x,y])=>[cx-y*cs,cy-x*cs];
+    const p1=contact([0.105,0.2]), p2=contact([-0.105,-0.2]);
+    el('rect',{x:p1[0],y:p1[1],width:p2[0]-p1[0],height:p2[1]-p1[1],class:'nm-structure'});
+    for(const x of [-0.105,0.105]) for(const y of [-0.2,0.2]) {const p=contact([x,y]);el('rect',{x:p[0]-3,y:p[1]-5,width:6,height:10,class:'nm-wheel'});}
+    label(cx,insetY+53,'+X / 板在前','middle');
+    label(cx,p2[1]+23,'400 mm 左右轮距','middle');
+    const c=contact(m.cg), r=contact([m.x,m.y]);
+    el('line',{x1:c[0],y1:c[1],x2:r[0],y2:r[1],class:'nm-structure'});
+    el('circle',{cx:c[0],cy:c[1],r:5,class:'nm-cg-point'});
+    path([[r[0]-5,r[1]-5],[r[0]+5,r[1]+5]],'nm-resultant');
+    path([[r[0]-5,r[1]+5],[r[0]+5,r[1]-5]],'nm-resultant');
+    label(insetX,insetY+247,'● 重心投影　× 最不利合力');
+    label(insetX,insetY+270,'加减速 0.25 m/s² · 前后距 210 mm');
+    root.querySelector('#nm-stop').textContent=m.stop.toFixed(2)+' m';
+    const margin=root.querySelector('#nm-margin');
+    margin.textContent=(Math.min(m.marginX,m.marginY)*1000).toFixed(0)+' mm';
+    margin.classList.toggle('nm-negative',Math.min(m.marginX,m.marginY)<0);
+    root.querySelector('#nm-cg').textContent=(m.cg[2]*1000).toFixed(0)+' mm';
+    root.querySelector('#nm-detail').textContent=`Ø50 mm 候选驱动轮：左 ${m.rpm[0].toFixed(0)} / 右 ${m.rpm[1].toFixed(0)} rpm · 质量 ${m.mass.toFixed(1)} kg（假设） · ${m.marginX<0||m.marginY<0?'合力越出支撑范围':'准静态筛查，尚未实车验证'}`;
+    const units={height:' m',ballast:' kg',speed:' m/s',radius:' m',wind:' m/s'};
+    Object.keys(state).forEach(k=>{root.querySelector('#nm-'+k).value=state[k];root.querySelector('#nm-'+k+'-value').textContent=state[k].toFixed(k==='speed'?2:1)+units[k];});
+    root.dataset.metrics=JSON.stringify(m);
+  }
+  function apply(saved) {
+    const v=saved?.modelContent?.parameters || saved?.parameters || {};
+    state = {...defaults};
+    Object.keys(defaults).forEach(k=>{if(Number.isFinite(v[k]))state[k]=clamp(v[k],...limits[k]);});
+    state.height = Math.round(state.height * 10) / 10;
+    draw();
+  }
+  function persist() {
+    // Optional host storage must not break local controls on older bridges.
+    try {
+      const bridge = window.openai;
+      if (bridge && typeof bridge.setWidgetState === 'function') {
+        Promise.resolve(bridge.setWidgetState({modelContent:{parameters:{...state},model:'upright-quasi-static-v1'},privateContent:null})).catch(()=>{});
+      }
+    } catch (_) { /* Local controls remain usable if host storage is unavailable. */ }
+  }
+  Object.keys(defaults).forEach(k=>root.querySelector('#nm-'+k).addEventListener('input',e=>{
+    state[k]=Number(e.target.value); draw();
+    persist();
+  }));
+  window.addEventListener('openai:set_globals',event=>{if(event.detail?.globals?.widgetState) apply(event.detail.globals.widgetState);});
+  let savedState = null;
+  try { savedState = window.openai?.widgetState; } catch (_) { /* Defaults work without host state. */ }
+  apply(savedState);
+  // Only width affects layout. Defer writes outside ResizeObserver delivery.
+  let lastWidth = root.clientWidth, pendingFrame = 0;
+  function resize() {
+    if (pendingFrame) return;
+    pendingFrame = requestAnimationFrame(() => {
+      pendingFrame = 0;
+      const width = root.clientWidth;
+      if (width === lastWidth) return;
+      lastWidth = width;
+      draw();
+    });
+  }
+  if (typeof ResizeObserver === 'function') new ResizeObserver(resize).observe(root);
+  else window.addEventListener('resize', resize);
+  return true;
+  }
+  function start() {
+    if (initialize()) return;
+    const mounting = new MutationObserver(() => { if (initialize()) mounting.disconnect(); });
+    mounting.observe(document.documentElement, {childList:true, subtree:true});
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true});
+  else start();
+})();
+</script>

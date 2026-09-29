@@ -1,5 +1,11 @@
 # 竖箱移动方案：第一轮筛查
 
+浏览交互结果：下载/克隆后打开 [nailong-motion.html](nailong-motion.html)；GitHub文件页不执行HTML。它是修复后内联可视化的独立导出版，可调高度、配重、速度、转弯与风。[fragment源文件](nailong-motion.fragment.html)保留编辑入口；页面不连接硬件，不实现自动跟随。导出页使用随附样式和状态桥接，通用UI资源可能从允许的CDN加载。
+
+已检查阻断网络时核心图形与控件仍可使用。数值的可复现来源为下面的Python模型；修改fragment后须重新导出完整页，不能只更新其中一份。当前完整页由visualize技能的`python scripts/render.py <fragment> <完整页>`导出，阅读和运行完整页不要求安装该技能。
+
+需求与当前差距见[PRD](../docs/PRD.md)、[PDR](../docs/PDR.md)。本轮只计算当前竖箱奶龙构型；PRD的裸箱0.8 m/s、载物与跟随指标尚未在这里完成独立构型验证，不能只拖动速度滑杆就视为验收。
+
 从仓库根目录运行：`python simulation/simulate.py`。脚本仅用 Python 标准库，参数在 `parameters.json`，会重写 `results.json` 并运行边界校验。一次比较可用 `python simulation/simulate.py --height 1.8 --bottom 0.02 --output simulation/results-1800.json`；默认输出也包含 1.6 / 1.7 / 1.8 m 的对比。
 
 当前 CAD 是被动 Ø50 箱轮；此处计算的是**待实现的后两驱动轮 + 前两万向轮**。接地点 X=±105、Y=±200 mm，后驱动轴 X=-105 mm；轨迹的参考点是该轴中点。支持接地点随脚轮旋转变化尚未建模。Ø80 是备选轮径，采用时必须同时改 CAD 轮舱和离地高度。
