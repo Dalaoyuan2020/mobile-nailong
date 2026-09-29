@@ -1,5 +1,7 @@
 # CAD prompt (English)
 
+> Archived horizontal layout; superseded by the [current upright suitcase prompt](PROMPT_STAND_HANDLE.md). The board now rests against the front broad face of the upright case. Do not use the old orientation or wheelbase below for the current assembly.
+
 You are a mechanical designer. Build an assemblable CAD model for "Mobile Nailong".
 
 A 26-inch hard-shell suitcase lies on its largest face and acts as ballast plus a load cart. A 1500 × 500 × 8 mm KT standee is strapped on TOP of the suitcase (yellow cartoon dragon, front facing +X). Under the case: a flat drive plate, two rear driven wheels, two front casters.

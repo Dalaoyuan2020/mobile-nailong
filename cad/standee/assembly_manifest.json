@@ -1,0 +1,292 @@
+{
+  "parts": [
+    {
+      "name": "case_base",
+      "category": "case",
+      "color": [
+        0.23,
+        0.25,
+        0.27
+      ],
+      "path": "parts/case_base.stl",
+      "bounds": [
+        -25.006024,
+        -235.020183,
+        69.979817,
+        145.020183,
+        235.020183,
+        790.020183
+      ]
+    },
+    {
+      "name": "case_lid",
+      "category": "case",
+      "color": [
+        0.23,
+        0.25,
+        0.27
+      ],
+      "path": "parts/case_lid.stl",
+      "bounds": [
+        -145.020183,
+        -235.020183,
+        69.979817,
+        -24.993976,
+        235.020183,
+        790.020183
+      ]
+    },
+    {
+      "name": "wheel_rear_left",
+      "category": "wheel",
+      "color": [
+        0.085,
+        0.095,
+        0.105
+      ],
+      "path": "parts/wheel_rear_left.stl",
+      "bounds": [
+        -130.000451,
+        -210.008222,
+        -0.008222,
+        -79.999549,
+        -189.991778,
+        50.008222
+      ]
+    },
+    {
+      "name": "fork_rear_left",
+      "category": "wheel",
+      "color": [
+        0.3,
+        0.32,
+        0.34
+      ],
+      "path": "parts/fork_rear_left.stl",
+      "bounds": [
+        -112.0,
+        -216.000933,
+        22.0,
+        -98.0,
+        -183.999067,
+        70.001865
+      ]
+    },
+    {
+      "name": "wheel_rear_right",
+      "category": "wheel",
+      "color": [
+        0.085,
+        0.095,
+        0.105
+      ],
+      "path": "parts/wheel_rear_right.stl",
+      "bounds": [
+        -130.000451,
+        189.991778,
+        -0.008222,
+        -79.999549,
+        210.008222,
+        50.008222
+      ]
+    },
+    {
+      "name": "fork_rear_right",
+      "category": "wheel",
+      "color": [
+        0.3,
+        0.32,
+        0.34
+      ],
+      "path": "parts/fork_rear_right.stl",
+      "bounds": [
+        -112.0,
+        183.999067,
+        22.0,
+        -98.0,
+        216.000933,
+        70.001865
+      ]
+    },
+    {
+      "name": "wheel_front_left",
+      "category": "wheel",
+      "color": [
+        0.085,
+        0.095,
+        0.105
+      ],
+      "path": "parts/wheel_front_left.stl",
+      "bounds": [
+        79.999549,
+        -210.008222,
+        -0.008222,
+        130.000451,
+        -189.991778,
+        50.008222
+      ]
+    },
+    {
+      "name": "fork_front_left",
+      "category": "wheel",
+      "color": [
+        0.3,
+        0.32,
+        0.34
+      ],
+      "path": "parts/fork_front_left.stl",
+      "bounds": [
+        98.0,
+        -216.000933,
+        22.0,
+        112.0,
+        -183.999067,
+        70.001865
+      ]
+    },
+    {
+      "name": "wheel_front_right",
+      "category": "wheel",
+      "color": [
+        0.085,
+        0.095,
+        0.105
+      ],
+      "path": "parts/wheel_front_right.stl",
+      "bounds": [
+        79.999549,
+        189.991778,
+        -0.008222,
+        130.000451,
+        210.008222,
+        50.008222
+      ]
+    },
+    {
+      "name": "fork_front_right",
+      "category": "wheel",
+      "color": [
+        0.3,
+        0.32,
+        0.34
+      ],
+      "path": "parts/fork_front_right.stl",
+      "bounds": [
+        98.0,
+        183.999067,
+        22.0,
+        112.0,
+        216.000933,
+        70.001865
+      ]
+    },
+    {
+      "name": "handle_frame",
+      "category": "handle",
+      "color": [
+        0.66,
+        0.69,
+        0.72
+      ],
+      "path": "parts/handle_frame.stl",
+      "bounds": [
+        125.0,
+        -96.0,
+        709.998135,
+        145.001865,
+        96.0,
+        1140.0
+      ]
+    },
+    {
+      "name": "socket_left",
+      "category": "handle",
+      "color": [
+        0.16,
+        0.18,
+        0.2
+      ],
+      "path": "parts/socket_left.stl",
+      "bounds": [
+        122.999398,
+        -103.000602,
+        699.999398,
+        145.00192,
+        -76.999398,
+        790.00192
+      ]
+    },
+    {
+      "name": "socket_right",
+      "category": "handle",
+      "color": [
+        0.16,
+        0.18,
+        0.2
+      ],
+      "path": "parts/socket_right.stl",
+      "bounds": [
+        122.999398,
+        76.999398,
+        699.999398,
+        145.00192,
+        103.000602,
+        790.00192
+      ]
+    },
+    {
+      "name": "standee",
+      "category": "board",
+      "color": [
+        0.9529411764705882,
+        0.796078431372549,
+        0.40784313725490196
+      ],
+      "path": "parts/standee.stl",
+      "bounds": [
+        145.0,
+        -396.103232,
+        20.0,
+        153.0,
+        396.103232,
+        1620.0
+      ]
+    },
+    {
+      "name": "mount_lower",
+      "category": "mount",
+      "color": [
+        0.36,
+        0.39,
+        0.42
+      ],
+      "path": "parts/mount_lower.stl",
+      "bounds": [
+        129.0,
+        -125.0,
+        904.99808,
+        145.00192,
+        125.0,
+        935.00192
+      ]
+    },
+    {
+      "name": "mount_upper",
+      "category": "mount",
+      "color": [
+        0.36,
+        0.39,
+        0.42
+      ],
+      "path": "parts/mount_upper.stl",
+      "bounds": [
+        129.0,
+        -125.0,
+        1064.99808,
+        145.00192,
+        125.0,
+        1095.00192
+      ]
+    }
+  ]
+}

@@ -1,32 +1,34 @@
 # 移动奶龙 / Mobile Nailong
 
-行李箱躺平 = 配重 + 载重车。立牌 **1.6 m** 绑在箱顶。V1 拆原装轮、整箱扎在成品底盘上，**不考虑打开箱子**。
+当前方案：**正常竖立的行李箱藏在奶龙立牌背后，双管拉杆贴板背，轮子在箱底。** 按参考照片近似描出圆头、鼓肚、抱腹双手和两只脚；立牌是一张 8 mm 平板，彩色图案为印刷示意。
 
-https://github.com/Dalaoyuan2020/mobile-nailong
+![奶龙立牌与背后竖箱](cad/standee/upright_preview.png)
 
-## 从这开始
+## 当前交付
 
-1. [docs/LAYERS.md](docs/LAYERS.md) — 分层
-2. [docs/TASKS.md](docs/TASKS.md) — 勾选
-3. [docs/CHASSIS.md](docs/CHASSIS.md) — V1 买哪种底盘
-4. [docs/PHYSICS.md](docs/PHYSICS.md) — 重心
-5. [docs/PROMPT_CASE_FIRST.md](docs/PROMPT_CASE_FIRST.md) — 本地建模箱壳
-6. [docs/PROMPT_STAND_HANDLE.md](docs/PROMPT_STAND_HANDLE.md) — 拉杆与 1.6 m 立牌
+- [可整块复制的 prompt](docs/PROMPT_STAND_HANDLE.md)
+- [装配 STEP](cad/standee/standee_assembly.step) / [STL](cad/standee/standee_assembly.stl) / [侧视](cad/standee/upright_side.png)
+- [奶龙轮廓源码](cad/standee/nailong_profile.py) / [正面图案 SVG](cad/standee/front_artwork.svg) / [总装源码](cad/standee/standee.py)
+- [材料与候选器件清单](docs/BOM.md) / [功能实现路线](docs/FUNCTIONS.md) / [可复现仿真](simulation/README.md)
 
-## 锁定
+默认板高 **1600 mm**，按照片比例宽约 **792 mm**，最低脚尖离地 **20 mm**，头顶离地 **1620 mm**；可用 `--height 1800` 改为 1800 mm 板、约 891 mm 宽、总高 1820 mm。轮廓和图案是参考照片的手工近似，尚非最终印刷稿。
 
-- 箱：26 寸优先，24 备选
-- 板：1.6 m × 0.5 m
-- 底盘：买 20 kg 级成品遥控底盘（250–450）；本轮已有则保留，没有则不新建
-- V1 不开箱；V2 再改开盖
-- 箱子躺在最大面上，不竖着走。
-- 立牌绑在箱顶，不插进箱里，不做人字牌。
-- 先遥控，再跟随，再语音。
+箱壳沿用原 720×470×290 mm 两半壳，只旋转成高720、宽470、深290 mm的竖箱，箱底Z70、箱顶Z790。原 [case26 文件](cad/case26/) 保持原设计坐标，仅总装副本切嵌入式拉杆导座槽。拉杆双管Ø12、管距180，伸出箱顶350 mm。板背X145贴箱面与双管；背面两条概念压条中心Z920/1080，夹具、紧固件和承载能力留待实物验证，正面不画绑带。
 
-## 已有箱壳
+当前 CAD 四个轮子是被动外形占位：Ø50、中心X±105/Y±200，左右距400、前后距210 mm。仿真的双电机差速驱动和候选80 mm轮尚未装进CAD；换轮须复核离地间隙、轮舱和接地点。旧540 mm轴距属于横放方案，不用于当前竖箱。
 
-720×470×290 mm 的 26 寸两半箱壳，底壳高 170 mm、箱盖高 120 mm；轮距 400 mm、轴距 540 mm。参数化源文件、STL / STEP 与外形预览见 [`cad/case26/`](cad/case26/)，尺寸及复现方式见 [`NOTES.md`](cad/case26/NOTES.md)。
+## 复现
 
-![26 寸箱壳首版](cad/case26/case26_preview.png)
+```powershell
+python -m pip install -r cad/standee/requirements.txt
+python cad/handle/handle.py
+python cad/standee/nailong_profile.py
+python cad/standee/standee.py
+python cad/standee/render_preview.py
+```
 
-[底部平台与后端细节](cad/case26/case26_details.png)
+导出过程检查有效实体、STEP回读、STL水密、零件干涉和贴合；印刷面不计入实体STEP。物理仿真使用假设质量与接地点，不能替代称重、实际制动和载荷试验。
+
+## 历史方案
+
+[箱壳初版 prompt](docs/PROMPT_CASE_FIRST.md)、[旧尺寸](docs/DIMENSIONS.md)、[计划](docs/PLAN.md)、[分层](docs/LAYERS.md)、[旧重心](docs/PHYSICS.md)、[旧电控](docs/ELECTRONICS.md)保留阶段记录。当前外形以用户照片纠正后的[竖箱奶龙 prompt](docs/PROMPT_STAND_HANDLE.md)为准。

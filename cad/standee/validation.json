@@ -1,0 +1,144 @@
+{
+  "units": "mm",
+  "case_pose": "upright",
+  "case_bounds": [
+    -145.0,
+    -235.0,
+    70.0,
+    145.0,
+    235.0,
+    790.0
+  ],
+  "case_height": 720,
+  "case_width": 470,
+  "case_depth": 290,
+  "board_bounds": [
+    145.0,
+    -396.103232,
+    20.0,
+    153.0,
+    396.103232,
+    1620.0
+  ],
+  "board_height": 1600.0,
+  "board_back_x": 145.0,
+  "board_contacts_case_and_handle": true,
+  "handle_projection": 350,
+  "tube_spacing": 180,
+  "concept_mount_center_z": [
+    920.0,
+    1080.0
+  ],
+  "mount_status": "layout only; clamp, fasteners and load rating not designed",
+  "mount_channel_radial_clearance": 0.2,
+  "profile": {
+    "units": "mm",
+    "height": 1600.0,
+    "width": 792.206464629091,
+    "thickness": 8.0,
+    "area_mm2": 779736.4734034835,
+    "volume_mm3": 6237891.787227868,
+    "centroid_yz_mm": [
+      7.421912746515794,
+      837.8348155171905
+    ],
+    "centroid_xyz_mm": [
+      149.0,
+      7.421912746515794,
+      837.8348155171905
+    ],
+    "bottom_z": 20.0,
+    "top_z": 1620.0,
+    "foot_gap_mm": 111.76437999603903,
+    "foot_gap_sample_z": 120.0,
+    "bounds": [
+      145.0,
+      -396.1032323145455,
+      20.0,
+      153.0,
+      396.1032323145455,
+      1620.0
+    ],
+    "source": "Manual approximate trace of user-supplied Nailong standee photograph; not manufacturing reverse engineering",
+    "outline_vertex_count": 592
+  },
+  "ground_to_board_top": 1620.0,
+  "ordinary_caster_centers_x": [
+    -105,
+    105
+  ],
+  "ordinary_caster_centers_y": [
+    -200,
+    200
+  ],
+  "max_pairwise_interference_mm3": 0.0,
+  "part_count": 16,
+  "case_source_files_unchanged": true,
+  "step_round_trip": "valid, 16 solids",
+  "stl_checks": {
+    "case_base": {
+      "watertight": true,
+      "triangles": 15736
+    },
+    "case_lid": {
+      "watertight": true,
+      "triangles": 21596
+    },
+    "wheel_rear_left": {
+      "watertight": true,
+      "triangles": 19152
+    },
+    "fork_rear_left": {
+      "watertight": true,
+      "triangles": 1052
+    },
+    "wheel_rear_right": {
+      "watertight": true,
+      "triangles": 19152
+    },
+    "fork_rear_right": {
+      "watertight": true,
+      "triangles": 1052
+    },
+    "wheel_front_left": {
+      "watertight": true,
+      "triangles": 19152
+    },
+    "fork_front_left": {
+      "watertight": true,
+      "triangles": 1052
+    },
+    "wheel_front_right": {
+      "watertight": true,
+      "triangles": 19152
+    },
+    "fork_front_right": {
+      "watertight": true,
+      "triangles": 1052
+    },
+    "handle_frame": {
+      "watertight": true,
+      "triangles": 2048
+    },
+    "socket_left": {
+      "watertight": true,
+      "triangles": 992
+    },
+    "socket_right": {
+      "watertight": true,
+      "triangles": 992
+    },
+    "standee": {
+      "watertight": true,
+      "triangles": 2364
+    },
+    "mount_lower": {
+      "watertight": true,
+      "triangles": 948
+    },
+    "mount_upper": {
+      "watertight": true,
+      "triangles": 948
+    }
+  }
+}

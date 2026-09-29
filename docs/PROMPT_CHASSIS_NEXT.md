@@ -1,8 +1,12 @@
 # PROMPT · 箱子已有，这一轮只做底盘
 
+> 历史横放底盘 prompt，已停用。当前竖立箱体仅有普通箱轮，没有驱动底盘；姿态和轮位见 [当前 prompt](PROMPT_STAND_HANDLE.md)。
+
 从下面 `---` 复制到文末，贴给本地 Claude / Codex。
 
 ---
+
+注意：以下横放底盘方案仅留档，不能直接套到当前竖立箱体；本轮不按此旧 prompt 新建驱动底盘。
 
 你在仓库 `mobile-nailong` 里推进 L1。
 

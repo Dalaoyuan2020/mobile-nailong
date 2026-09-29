@@ -1,0 +1,42 @@
+{
+  "model": "upright-case-concept-v1",
+  "units": "m, kg, s, rad, N",
+  "status": "All component masses, friction, drag and braking performance are assumptions; replace with measurements before hardware use.",
+  "gravity": 9.81,
+  "track_m": 0.4,
+  "contact_half_length_m": 0.105,
+  "contact_half_width_m": 0.2,
+  "wheel_diameters_m": [0.05, 0.08],
+  "default_wheel_diameter_m": 0.05,
+  "speed_mps": 0.3,
+  "acceleration_mps2": 0.25,
+  "braking_deceleration_mps2": 0.25,
+  "minimum_turn_radius_m": 1.5,
+  "communication_timeout_s": 0.2,
+  "rolling_resistance_coefficient": 0.03,
+  "drivetrain_efficiency": 0.7,
+  "torque_selection_factor": 2.0,
+  "air_density_kg_m3": 1.225,
+  "drag_coefficient_assumed": 1.2,
+  "standee_bottom_m": 0.02,
+  "standee_height_m": 1.6,
+  "standee_mass_override_kg": null,
+  "standee_reference": {
+    "height_m": 1.6,
+    "area_m2": 0.7797364734034835,
+    "centroid_y_m": 0.007421912746515794,
+    "centroid_z_above_bottom_m": 0.8178348155171905,
+    "centroid_x_m": 0.149,
+    "mass_kg": 1.5,
+    "mass_model": "uniform areal density; width and height scale together; thickness remains 8 mm"
+  },
+  "standee_geometry_source": "cad/standee/profile_metrics.json: same 592-point photo-derived silhouette as CAD; uniform sheet mass and uniform wind pressure assumed",
+  "ballast_kg": 6.0,
+  "ballast_position_m": [-0.03, 0.0, 0.12],
+  "components": [
+    {"name": "case", "mass_kg": 4.5, "position_m": [0.0, 0.0, 0.43]},
+    {"name": "battery", "mass_kg": 1.2, "position_m": [-0.05, 0.0, 0.14]},
+    {"name": "drive_hardware_provisional", "mass_kg": 1.8, "position_m": [0.0, 0.0, 0.08]},
+    {"name": "handle_and_fixings_provisional", "mass_kg": 0.5, "position_m": [0.139, 0.0, 0.9]}
+  ]
+}
