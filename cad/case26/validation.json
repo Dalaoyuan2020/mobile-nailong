@@ -1,0 +1,75 @@
+{
+  "units": "mm",
+  "material": "ABS",
+  "color": "dark grey",
+  "envelope": [
+    720.0,
+    470.0,
+    290.0
+  ],
+  "split_z": 170.0,
+  "wall": 3.0,
+  "base_bounds": [
+    -360.0,
+    -235.0,
+    -3.552713678800501e-15,
+    360.0,
+    235.0,
+    170.0
+  ],
+  "lid_bounds": [
+    -360.0,
+    -235.0,
+    170.0,
+    360.0,
+    235.0,
+    290.0
+  ],
+  "base_volume_mm3": 2160135.5079496354,
+  "lid_volume_mm3": 1802778.6967084229,
+  "wheel_xy": [
+    [
+      -270.0,
+      -200.0
+    ],
+    [
+      -270.0,
+      200.0
+    ],
+    [
+      270.0,
+      -200.0
+    ],
+    [
+      270.0,
+      200.0
+    ]
+  ],
+  "wheel_hole_d": 6.6,
+  "strap_x": [
+    -80.0,
+    0.0,
+    80.0
+  ],
+  "ballast_clearance_count": 8,
+  "valid_single_solids": true,
+  "interference_volume_mm3": 0,
+  "stl_checks": {
+    "case26_base": {
+      "watertight": true,
+      "triangles": 15168,
+      "degenerate_triangles_removed": 8
+    },
+    "case26_lid": {
+      "watertight": true,
+      "triangles": 21596,
+      "degenerate_triangles_removed": 8
+    },
+    "case26_lid_print": {
+      "watertight": true,
+      "triangles": 21596,
+      "degenerate_triangles_removed": 8
+    }
+  },
+  "step_round_trip": "valid, 2 solids, envelope verified"
+}

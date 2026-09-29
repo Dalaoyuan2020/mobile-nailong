@@ -1,0 +1,31 @@
+{
+  "units": "mm",
+  "height": 1600.0,
+  "width": 792.206464629091,
+  "thickness": 8.0,
+  "area_mm2": 779736.4734034835,
+  "volume_mm3": 6237891.787227868,
+  "centroid_yz_mm": [
+    7.421912746515794,
+    837.8348155171905
+  ],
+  "centroid_xyz_mm": [
+    149.0,
+    7.421912746515794,
+    837.8348155171905
+  ],
+  "bottom_z": 20.0,
+  "top_z": 1620.0,
+  "foot_gap_mm": 111.76437999603903,
+  "foot_gap_sample_z": 120.0,
+  "bounds": [
+    145.0,
+    -396.1032323145455,
+    20.0,
+    153.0,
+    396.1032323145455,
+    1620.0
+  ],
+  "source": "Manual approximate trace of user-supplied Nailong standee photograph; not manufacturing reverse engineering",
+  "outline_vertex_count": 592
+}

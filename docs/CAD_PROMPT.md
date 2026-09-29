@@ -1,10 +1,14 @@
 # 本地建模 Prompt
 
+> 历史横放 prompt，已停用。当前为竖立行李箱、立牌贴箱前方，请复制 [当前 prompt](PROMPT_STAND_HANDLE.md)；下文只保留旧方案记录。
+
 把下面整块贴进 Fusion 360 / SolidWorks / Blender / 任何 CAD Agent。
 不要改结构定义。可以改圆角、壁厚、开孔、减重。
 优先出 **26 寸**，再拷贝出 24 寸配置。
 
 ---
+
+注意：以下是已停用的横放方案；当前装配必须采用 `docs/PROMPT_STAND_HANDLE.md`，不要执行下文旧姿态约束。
 
 你是机械结构工程师。为项目「移动奶龙」建一个可装配的 CAD 模型。
 

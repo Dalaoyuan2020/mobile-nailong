@@ -1,0 +1,56 @@
+{
+  "units": "mm",
+  "case_orientation": "upright",
+  "case_z": [
+    70.0,
+    790.0
+  ],
+  "projection_above_case": 350.0,
+  "tube_spacing": 180.0,
+  "tube_od": 12.0,
+  "tube_wall": 1.2,
+  "tube_axes_xy": [
+    [
+      139.0,
+      -90
+    ],
+    [
+      139.0,
+      90
+    ]
+  ],
+  "tube_bottom_z": 710.0,
+  "tube_insertion_below_case_top": 80.0,
+  "guide_radial_clearance": 0.20000000000000018,
+  "seat_cut_clearance": 0.2,
+  "frame_and_seat_overlap_mm3": 0,
+  "bounds": [
+    123.0,
+    -103.0,
+    700.0,
+    145.0,
+    103.0,
+    1140.0
+  ],
+  "named_parts": [
+    "handle_frame",
+    "socket_left",
+    "socket_right"
+  ],
+  "valid_solids": 3,
+  "step_round_trip": "valid, 3 solids",
+  "stl_checks": {
+    "handle_frame": {
+      "watertight": true,
+      "triangles": 2048
+    },
+    "socket_left": {
+      "watertight": true,
+      "triangles": 992
+    },
+    "socket_right": {
+      "watertight": true,
+      "triangles": 992
+    }
+  }
+}

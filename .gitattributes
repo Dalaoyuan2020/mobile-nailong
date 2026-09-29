@@ -1,0 +1,5 @@
+cad/**/*.step binary linguist-generated=true
+cad/**/*.stl binary linguist-generated=true
+cad/**/*.png binary linguist-generated=true
+cad/**/validation.json linguist-generated=true
+simulation/nailong-motion.html linguist-generated=true

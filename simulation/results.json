@@ -1,0 +1,1999 @@
+{
+  "scope": "deterministic differential-drive kinematics + quasi-static tipping and torque screening; no multibody/contact/FEA/real robot simulation",
+  "parameters": {
+    "model": "upright-case-concept-v1",
+    "units": "m, kg, s, rad, N",
+    "status": "All component masses, friction, drag and braking performance are assumptions; replace with measurements before hardware use.",
+    "gravity": 9.81,
+    "track_m": 0.4,
+    "contact_half_length_m": 0.105,
+    "contact_half_width_m": 0.2,
+    "wheel_diameters_m": [
+      0.05,
+      0.08
+    ],
+    "default_wheel_diameter_m": 0.05,
+    "speed_mps": 0.3,
+    "acceleration_mps2": 0.25,
+    "braking_deceleration_mps2": 0.25,
+    "minimum_turn_radius_m": 1.5,
+    "communication_timeout_s": 0.2,
+    "rolling_resistance_coefficient": 0.03,
+    "drivetrain_efficiency": 0.7,
+    "torque_selection_factor": 2.0,
+    "air_density_kg_m3": 1.225,
+    "drag_coefficient_assumed": 1.2,
+    "standee_bottom_m": 0.02,
+    "standee_height_m": 1.6,
+    "standee_mass_override_kg": null,
+    "standee_reference": {
+      "height_m": 1.6,
+      "area_m2": 0.7797364734034835,
+      "centroid_y_m": 0.007421912746515794,
+      "centroid_z_above_bottom_m": 0.8178348155171905,
+      "centroid_x_m": 0.149,
+      "mass_kg": 1.5,
+      "mass_model": "uniform areal density; width and height scale together; thickness remains 8 mm"
+    },
+    "standee_geometry_source": "cad/standee/profile_metrics.json: same 592-point photo-derived silhouette as CAD; uniform sheet mass and uniform wind pressure assumed",
+    "ballast_kg": 6.0,
+    "ballast_position_m": [
+      -0.03,
+      0.0,
+      0.12
+    ],
+    "components": [
+      {
+        "name": "case",
+        "mass_kg": 4.5,
+        "position_m": [
+          0.0,
+          0.0,
+          0.43
+        ]
+      },
+      {
+        "name": "battery",
+        "mass_kg": 1.2,
+        "position_m": [
+          -0.05,
+          0.0,
+          0.14
+        ]
+      },
+      {
+        "name": "drive_hardware_provisional",
+        "mass_kg": 1.8,
+        "position_m": [
+          0.0,
+          0.0,
+          0.08
+        ]
+      },
+      {
+        "name": "handle_and_fixings_provisional",
+        "mass_kg": 0.5,
+        "position_m": [
+          0.139,
+          0.0,
+          0.9
+        ]
+      }
+    ]
+  },
+  "standee_resolved": {
+    "area_m2": 0.7797364734034835,
+    "mass_kg": 1.5,
+    "center_of_mass_m": [
+      0.149,
+      0.007421912746515794,
+      0.8378348155171905
+    ],
+    "pressure_center_z_m": 0.8378348155171905,
+    "height_m": 1.6,
+    "bottom_m": 0.02,
+    "top_m": 1.62,
+    "mass_model": "constant reference areal density"
+  },
+  "height_comparison": [
+    {
+      "standee": {
+        "area_m2": 0.7797364734034835,
+        "mass_kg": 1.5,
+        "center_of_mass_m": [
+          0.149,
+          0.007421912746515794,
+          0.8378348155171905
+        ],
+        "pressure_center_z_m": 0.8378348155171905,
+        "height_m": 1.6,
+        "bottom_m": 0.02,
+        "top_m": 1.62,
+        "mass_model": "constant reference areal density"
+      },
+      "stability_zero_wind": {
+        "mass_kg": 15.5,
+        "center_of_mass_m": [
+          0.0034193548387096767,
+          0.0007182496206305607,
+          0.3015324015016636
+        ],
+        "static_margin_x_m": 0.10158064516129033,
+        "static_margin_y_m": 0.19928175037936946,
+        "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+        "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+        "critical_longitudinal_slope_static_deg": 18.61771186799017,
+        "front_on_wind_mps": 0.0,
+        "wind_force_N": 0.0,
+        "wind_contact_shift_x_m": 0.0,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.0076843119648742,
+        "turn_contact_shift_y_m": 0.0018442348715698078,
+        "worst_case_contact_x_m": 0.011103666803583876,
+        "worst_case_contact_y_m": 0.0025624844922003684,
+        "remaining_margin_x_m": 0.09389633319641613,
+        "remaining_margin_y_m": 0.19743751550779964,
+        "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      },
+      "stability_wind_5mps": {
+        "mass_kg": 15.5,
+        "center_of_mass_m": [
+          0.0034193548387096767,
+          0.0007182496206305607,
+          0.3015324015016636
+        ],
+        "static_margin_x_m": 0.10158064516129033,
+        "static_margin_y_m": 0.19928175037936946,
+        "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+        "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+        "critical_longitudinal_slope_static_deg": 18.61771186799017,
+        "front_on_wind_mps": 5,
+        "wind_force_N": 14.32765769878901,
+        "wind_contact_shift_x_m": 0.07894650254748836,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.0076843119648742,
+        "turn_contact_shift_y_m": 0.0018442348715698078,
+        "worst_case_contact_x_m": 0.09005016935107223,
+        "worst_case_contact_y_m": 0.0025624844922003684,
+        "remaining_margin_x_m": 0.014949830648927763,
+        "remaining_margin_y_m": 0.19743751550779964,
+        "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      }
+    },
+    {
+      "standee": {
+        "area_m2": 0.8802493781781513,
+        "mass_kg": 1.693359375,
+        "center_of_mass_m": [
+          0.149,
+          0.00788578229317303,
+          0.888949491487015
+        ],
+        "pressure_center_z_m": 0.888949491487015,
+        "height_m": 1.7,
+        "bottom_m": 0.02,
+        "top_m": 1.72,
+        "mass_model": "constant reference areal density"
+      },
+      "stability_zero_wind": {
+        "mass_kg": 15.693359375,
+        "center_of_mass_m": [
+          0.0052130678282514,
+          0.0008508989730156835,
+          0.31365565763774017
+        ],
+        "static_margin_x_m": 0.0997869321717486,
+        "static_margin_y_m": 0.19914910102698433,
+        "critical_longitudinal_acceleration_no_wind_mps2": 3.1209697028180368,
+        "critical_lateral_acceleration_no_wind_mps2": 6.228654365071608,
+        "critical_longitudinal_slope_static_deg": 17.6480349248515,
+        "front_on_wind_mps": 0.0,
+        "wind_force_N": 0.0,
+        "wind_contact_shift_x_m": 0.0,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.00799326344642559,
+        "turn_contact_shift_y_m": 0.0019183832271421413,
+        "worst_case_contact_x_m": 0.01320633127467699,
+        "worst_case_contact_y_m": 0.002769282200157825,
+        "remaining_margin_x_m": 0.091793668725323,
+        "remaining_margin_y_m": 0.1972307177998422,
+        "wind_tip_threshold_with_start_brake_mps": 4.956941021850208,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      },
+      "stability_wind_5mps": {
+        "mass_kg": 15.693359375,
+        "center_of_mass_m": [
+          0.0052130678282514,
+          0.0008508989730156835,
+          0.31365565763774017
+        ],
+        "static_margin_x_m": 0.0997869321717486,
+        "static_margin_y_m": 0.19914910102698433,
+        "critical_longitudinal_acceleration_no_wind_mps2": 3.1209697028180368,
+        "critical_lateral_acceleration_no_wind_mps2": 6.228654365071608,
+        "critical_longitudinal_slope_static_deg": 17.6480349248515,
+        "front_on_wind_mps": 5,
+        "wind_force_N": 16.17458232402353,
+        "wind_contact_shift_x_m": 0.09339534550055605,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.00799326344642559,
+        "turn_contact_shift_y_m": 0.0019183832271421413,
+        "worst_case_contact_x_m": 0.10660167677523304,
+        "worst_case_contact_y_m": 0.002769282200157825,
+        "remaining_margin_x_m": -0.001601676775233039,
+        "remaining_margin_y_m": 0.1972307177998422,
+        "wind_tip_threshold_with_start_brake_mps": 4.956941021850208,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      }
+    },
+    {
+      "standee": {
+        "area_m2": 0.9868539741512838,
+        "mass_kg": 1.8984375,
+        "center_of_mass_m": [
+          0.149,
+          0.008349651839830267,
+          0.9400641674568393
+        ],
+        "pressure_center_z_m": 0.9400641674568393,
+        "height_m": 1.8,
+        "bottom_m": 0.02,
+        "top_m": 1.82,
+        "mass_model": "constant reference areal density"
+      },
+      "stability_zero_wind": {
+        "mass_kg": 15.8984375,
+        "center_of_mass_m": [
+          0.007067813267813269,
+          0.0009970345931590934,
+          0.32718014382899846
+        ],
+        "static_margin_x_m": 0.09793218673218673,
+        "static_margin_y_m": 0.19900296540684093,
+        "critical_longitudinal_acceleration_no_wind_mps2": 2.9363479720972063,
+        "critical_lateral_acceleration_no_wind_mps2": 5.966801859655157,
+        "critical_longitudinal_slope_static_deg": 16.663594015743932,
+        "front_on_wind_mps": 0.0,
+        "wind_force_N": 0.0,
+        "wind_contact_shift_x_m": 0.0,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.008337924154663568,
+        "turn_contact_shift_y_m": 0.0020011017971192564,
+        "worst_case_contact_x_m": 0.015405737422476837,
+        "worst_case_contact_y_m": 0.0029981363902783498,
+        "remaining_margin_x_m": 0.08959426257752316,
+        "remaining_margin_y_m": 0.19700186360972166,
+        "wind_tip_threshold_with_start_brake_mps": 4.5269214529078035,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      },
+      "stability_wind_5mps": {
+        "mass_kg": 15.8984375,
+        "center_of_mass_m": [
+          0.007067813267813269,
+          0.0009970345931590934,
+          0.32718014382899846
+        ],
+        "static_margin_x_m": 0.09793218673218673,
+        "static_margin_y_m": 0.19900296540684093,
+        "critical_longitudinal_acceleration_no_wind_mps2": 2.9363479720972063,
+        "critical_lateral_acceleration_no_wind_mps2": 5.966801859655157,
+        "critical_longitudinal_slope_static_deg": 16.663594015743932,
+        "front_on_wind_mps": 5,
+        "wind_force_N": 18.13344177502984,
+        "wind_contact_shift_x_m": 0.1092985221522151,
+        "adverse_slope_deg": 0.0,
+        "start_brake_contact_shift_x_m": 0.008337924154663568,
+        "turn_contact_shift_y_m": 0.0020011017971192564,
+        "worst_case_contact_x_m": 0.12470425957469193,
+        "worst_case_contact_y_m": 0.0029981363902783498,
+        "remaining_margin_x_m": -0.019704259574691935,
+        "remaining_margin_y_m": 0.19700186360972166,
+        "wind_tip_threshold_with_start_brake_mps": 4.5269214529078035,
+        "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+      }
+    }
+  ],
+  "verification": "24 assertions passed: speed/wind boundaries, wheel symmetry, ballast, exact stop/arc geometry, height/area/mass/COM/wind scaling, bottom translation and mass override",
+  "default": {
+    "mass_kg": 15.5,
+    "center_of_mass_m": [
+      0.0034193548387096767,
+      0.0007182496206305607,
+      0.3015324015016636
+    ],
+    "static_margin_x_m": 0.10158064516129033,
+    "static_margin_y_m": 0.19928175037936946,
+    "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+    "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+    "critical_longitudinal_slope_static_deg": 18.61771186799017,
+    "front_on_wind_mps": 0.0,
+    "wind_force_N": 0.0,
+    "wind_contact_shift_x_m": 0.0,
+    "adverse_slope_deg": 0.0,
+    "start_brake_contact_shift_x_m": 0.0076843119648742,
+    "turn_contact_shift_y_m": 0.0018442348715698078,
+    "worst_case_contact_x_m": 0.011103666803583876,
+    "worst_case_contact_y_m": 0.0025624844922003684,
+    "remaining_margin_x_m": 0.09389633319641613,
+    "remaining_margin_y_m": 0.19743751550779964,
+    "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+    "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+  },
+  "wheel_speeds": {
+    "0.05": {
+      "straight": {
+        "left_mps": 0.3,
+        "right_mps": 0.3,
+        "left_rpm": 114.59155902616463,
+        "right_rpm": 114.59155902616463,
+        "yaw_rate_rad_s": 0.0
+      },
+      "left_turn": {
+        "left_mps": 0.26,
+        "right_mps": 0.33999999999999997,
+        "left_rpm": 99.31268448934269,
+        "right_rpm": 129.8704335629866,
+        "yaw_rate_rad_s": 0.19999999999999998
+      }
+    },
+    "0.08": {
+      "straight": {
+        "left_mps": 0.3,
+        "right_mps": 0.3,
+        "left_rpm": 71.61972439135289,
+        "right_rpm": 71.61972439135289,
+        "yaw_rate_rad_s": 0.0
+      },
+      "left_turn": {
+        "left_mps": 0.26,
+        "right_mps": 0.33999999999999997,
+        "left_rpm": 62.07042780583918,
+        "right_rpm": 81.1690209768666,
+        "yaw_rate_rad_s": 0.19999999999999998
+      }
+    }
+  },
+  "stop_distance_m": {
+    "commanded": 0.18,
+    "disconnect_healthy_controller": 0.24
+  },
+  "scenarios": {
+    "straight_controlled_stop": {
+      "trigger_s": 2.0,
+      "brake_starts_s": 2.0,
+      "stopped_s": 3.2,
+      "distance_after_trigger_m": 0.18000000000000002,
+      "samples": [
+        {
+          "t_s": 0.0,
+          "x_m": 0.0,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.01,
+          "x_m": 0.003,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.11,
+          "x_m": 0.033,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.21,
+          "x_m": 0.063,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.31,
+          "x_m": 0.093,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.41000000000000003,
+          "x_m": 0.12300000000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.51,
+          "x_m": 0.153,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.61,
+          "x_m": 0.183,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.71,
+          "x_m": 0.213,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.81,
+          "x_m": 0.24300000000000002,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.91,
+          "x_m": 0.273,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.01,
+          "x_m": 0.303,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.11,
+          "x_m": 0.333,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.21,
+          "x_m": 0.363,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.31,
+          "x_m": 0.393,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.41,
+          "x_m": 0.423,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.51,
+          "x_m": 0.453,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.61,
+          "x_m": 0.48300000000000004,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.71,
+          "x_m": 0.513,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.81,
+          "x_m": 0.543,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.9100000000000001,
+          "x_m": 0.5730000000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 2.0100000000000002,
+          "x_m": 0.6029875,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.29749999999999993
+        },
+        {
+          "t_s": 2.11,
+          "x_m": 0.6314875000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.2725
+        },
+        {
+          "t_s": 2.21,
+          "x_m": 0.6574875000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.2475
+        },
+        {
+          "t_s": 2.31,
+          "x_m": 0.6809875000000003,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.22249999999999998
+        },
+        {
+          "t_s": 2.41,
+          "x_m": 0.7019875000000002,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.19749999999999995
+        },
+        {
+          "t_s": 2.5100000000000002,
+          "x_m": 0.7204875000000004,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.17249999999999993
+        },
+        {
+          "t_s": 2.61,
+          "x_m": 0.7364875000000005,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.14750000000000002
+        },
+        {
+          "t_s": 2.71,
+          "x_m": 0.7499875000000007,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.1225
+        },
+        {
+          "t_s": 2.81,
+          "x_m": 0.760987500000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.09749999999999998
+        },
+        {
+          "t_s": 2.91,
+          "x_m": 0.7694875000000012,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.07249999999999995
+        },
+        {
+          "t_s": 3.0100000000000002,
+          "x_m": 0.7754875000000013,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.04749999999999993
+        },
+        {
+          "t_s": 3.11,
+          "x_m": 0.7789875000000014,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.02250000000000002
+        },
+        {
+          "t_s": 3.2,
+          "x_m": 0.7800000000000014,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.0
+        }
+      ]
+    },
+    "minimum_radius_turn_controlled_stop": {
+      "trigger_s": 2.0,
+      "brake_starts_s": 2.0,
+      "stopped_s": 3.2,
+      "distance_after_trigger_m": 0.18000000000000002,
+      "samples": [
+        {
+          "t_s": 0.0,
+          "x_m": 0.0,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.01,
+          "x_m": 0.0029999980000004,
+          "y_m": 2.9999990000528776e-06,
+          "yaw_rad": 0.002,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.11,
+          "x_m": 0.03299733806441965,
+          "y_m": 0.0003629853592361787,
+          "yaw_rad": 0.022,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.21,
+          "x_m": 0.06298147963357179,
+          "y_m": 0.0013228055304351227,
+          "yaw_rad": 0.041999999999999996,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.31,
+          "x_m": 0.09294042945061234,
+          "y_m": 0.0028820765973256446,
+          "yaw_rad": 0.06199999999999999,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.41000000000000003,
+          "x_m": 0.12286220433506188,
+          "y_m": 0.005040174872271208,
+          "yaw_rad": 0.082,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.51,
+          "x_m": 0.15273483597591825,
+          "y_m": 0.007796237144735929,
+          "yaw_rad": 0.102,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.61,
+          "x_m": 0.18254637571882154,
+          "y_m": 0.011149161026557719,
+          "yaw_rad": 0.12199999999999998,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.71,
+          "x_m": 0.2122848993453566,
+          "y_m": 0.015097605392889235,
+          "yaw_rad": 0.142,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.81,
+          "x_m": 0.24193851184258108,
+          "y_m": 0.019639990918628947,
+          "yaw_rad": 0.162,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.91,
+          "x_m": 0.2714953521608724,
+          "y_m": 0.02477450071013082,
+          "yaw_rad": 0.182,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.01,
+          "x_m": 0.3009435979581889,
+          "y_m": 0.030499081031937658,
+          "yaw_rad": 0.20199999999999999,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.11,
+          "x_m": 0.33027147032885007,
+          "y_m": 0.03681144212824733,
+          "yaw_rad": 0.222,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.21,
+          "x_m": 0.35946723851494067,
+          "y_m": 0.04370905913878498,
+          "yaw_rad": 0.24199999999999997,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.31,
+          "x_m": 0.3885192245984579,
+          "y_m": 0.05118917310871368,
+          "yaw_rad": 0.262,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.41,
+          "x_m": 0.4174158081723228,
+          "y_m": 0.05924879209217854,
+          "yaw_rad": 0.282,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.51,
+          "x_m": 0.4461454309883889,
+          "y_m": 0.0678846923490467,
+          "yaw_rad": 0.302,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.61,
+          "x_m": 0.474696601580586,
+          "y_m": 0.07709341963435912,
+          "yaw_rad": 0.322,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.71,
+          "x_m": 0.5030578998613546,
+          "y_m": 0.08687129057998294,
+          "yaw_rad": 0.34199999999999997,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.81,
+          "x_m": 0.5312179816895278,
+          "y_m": 0.09721439416790972,
+          "yaw_rad": 0.362,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.9100000000000001,
+          "x_m": 0.5591655834078373,
+          "y_m": 0.10811859329461088,
+          "yaw_rad": 0.382,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 2.0100000000000002,
+          "x_m": 0.5868780228239007,
+          "y_m": 0.11957463572770116,
+          "yaw_rad": 0.4019916666666667,
+          "speed_mps": 0.29749999999999993
+        },
+        {
+          "t_s": 2.11,
+          "x_m": 0.6129985984209098,
+          "y_m": 0.13097380655664592,
+          "yaw_rad": 0.4209916666666666,
+          "speed_mps": 0.2725
+        },
+        {
+          "t_s": 2.21,
+          "x_m": 0.6366351138385122,
+          "y_m": 0.14180423655946245,
+          "yaw_rad": 0.43832499999999996,
+          "speed_mps": 0.2475
+        },
+        {
+          "t_s": 2.31,
+          "x_m": 0.6578345160210114,
+          "y_m": 0.15194445606592244,
+          "yaw_rad": 0.4539916666666667,
+          "speed_mps": 0.22249999999999998
+        },
+        {
+          "t_s": 2.41,
+          "x_m": 0.6766422104017915,
+          "y_m": 0.16128594572904503,
+          "yaw_rad": 0.4679916666666666,
+          "speed_mps": 0.19749999999999995
+        },
+        {
+          "t_s": 2.5100000000000002,
+          "x_m": 0.6931011367478981,
+          "y_m": 0.16973280344181552,
+          "yaw_rad": 0.48032499999999995,
+          "speed_mps": 0.17249999999999993
+        },
+        {
+          "t_s": 2.61,
+          "x_m": 0.7072509550577293,
+          "y_m": 0.17720141874511752,
+          "yaw_rad": 0.49099166666666666,
+          "speed_mps": 0.14750000000000002
+        },
+        {
+          "t_s": 2.71,
+          "x_m": 0.7191273380993105,
+          "y_m": 0.18362016439091577,
+          "yaw_rad": 0.49999166666666656,
+          "speed_mps": 0.1225
+        },
+        {
+          "t_s": 2.81,
+          "x_m": 0.7287613672553739,
+          "y_m": 0.18892911343586094,
+          "yaw_rad": 0.5073249999999997,
+          "speed_mps": 0.09749999999999998
+        },
+        {
+          "t_s": 2.91,
+          "x_m": 0.736179028547602,
+          "y_m": 0.19307978899754225,
+          "yaw_rad": 0.5129916666666663,
+          "speed_mps": 0.07249999999999995
+        },
+        {
+          "t_s": 3.0100000000000002,
+          "x_m": 0.741400806026765,
+          "y_m": 0.19603495260691034,
+          "yaw_rad": 0.5169916666666664,
+          "speed_mps": 0.04749999999999993
+        },
+        {
+          "t_s": 3.11,
+          "x_m": 0.7444413701196517,
+          "y_m": 0.19776843593223586,
+          "yaw_rad": 0.519325,
+          "speed_mps": 0.02250000000000002
+        },
+        {
+          "t_s": 3.2,
+          "x_m": 0.7453202067656053,
+          "y_m": 0.19827123048352552,
+          "yaw_rad": 0.5200000000000005,
+          "speed_mps": 0.0
+        }
+      ]
+    },
+    "radio_loss_controlled_stop": {
+      "trigger_s": 2.0,
+      "brake_starts_s": 2.2,
+      "stopped_s": 3.4000000000000004,
+      "distance_after_trigger_m": 0.24000000000000002,
+      "samples": [
+        {
+          "t_s": 0.0,
+          "x_m": 0.0,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.01,
+          "x_m": 0.003,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.11,
+          "x_m": 0.033,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.21,
+          "x_m": 0.063,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.31,
+          "x_m": 0.093,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.41000000000000003,
+          "x_m": 0.12300000000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.51,
+          "x_m": 0.153,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.61,
+          "x_m": 0.183,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.71,
+          "x_m": 0.213,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.81,
+          "x_m": 0.24300000000000002,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 0.91,
+          "x_m": 0.273,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.01,
+          "x_m": 0.303,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.11,
+          "x_m": 0.333,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.21,
+          "x_m": 0.363,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.31,
+          "x_m": 0.393,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.41,
+          "x_m": 0.423,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.51,
+          "x_m": 0.453,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.61,
+          "x_m": 0.48300000000000004,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.71,
+          "x_m": 0.513,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.81,
+          "x_m": 0.543,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 1.9100000000000001,
+          "x_m": 0.5730000000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 2.0100000000000002,
+          "x_m": 0.6030000000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 2.11,
+          "x_m": 0.6329999999999999,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.3
+        },
+        {
+          "t_s": 2.21,
+          "x_m": 0.6629875,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.29750000000000004
+        },
+        {
+          "t_s": 2.31,
+          "x_m": 0.6914875000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.2725
+        },
+        {
+          "t_s": 2.41,
+          "x_m": 0.7174875000000001,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.2475
+        },
+        {
+          "t_s": 2.5100000000000002,
+          "x_m": 0.7409875,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.22249999999999998
+        },
+        {
+          "t_s": 2.61,
+          "x_m": 0.7619874999999998,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.19750000000000006
+        },
+        {
+          "t_s": 2.71,
+          "x_m": 0.7804874999999997,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.17250000000000004
+        },
+        {
+          "t_s": 2.81,
+          "x_m": 0.7964874999999996,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.14750000000000002
+        },
+        {
+          "t_s": 2.91,
+          "x_m": 0.8099874999999992,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.1225
+        },
+        {
+          "t_s": 3.0100000000000002,
+          "x_m": 0.8209874999999991,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.09749999999999998
+        },
+        {
+          "t_s": 3.11,
+          "x_m": 0.829487499999999,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.07250000000000006
+        },
+        {
+          "t_s": 3.21,
+          "x_m": 0.8354874999999989,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.04750000000000004
+        },
+        {
+          "t_s": 3.31,
+          "x_m": 0.8389874999999991,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.02250000000000002
+        },
+        {
+          "t_s": 3.4,
+          "x_m": 0.8399999999999991,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 5.551115123125783e-17
+        },
+        {
+          "t_s": 3.4000000000000004,
+          "x_m": 0.8399999999999991,
+          "y_m": 0.0,
+          "yaw_rad": 0.0,
+          "speed_mps": 0.0
+        }
+      ]
+    }
+  },
+  "torque_selection": [
+    {
+      "wheel_diameter_m": 0.05,
+      "slope_deg": 0,
+      "tractive_force_total_N": 8.43665,
+      "wheel_contact_torque_each_Nm": 0.10545812500000001,
+      "gearbox_output_torque_each_with_loss_and_factor_Nm": 0.3013089285714286,
+      "assumptions": "equal drive loads, rolling resistance 0.03; efficiency 0.7; selection factor 2; caster scrub/step impact not modeled"
+    },
+    {
+      "wheel_diameter_m": 0.05,
+      "slope_deg": 5,
+      "tractive_force_total_N": 21.671758008045373,
+      "wheel_contact_torque_each_Nm": 0.27089697510056715,
+      "gearbox_output_torque_each_with_loss_and_factor_Nm": 0.7739913574301919,
+      "assumptions": "equal drive loads, rolling resistance 0.03; efficiency 0.7; selection factor 2; caster scrub/step impact not modeled"
+    },
+    {
+      "wheel_diameter_m": 0.08,
+      "slope_deg": 0,
+      "tractive_force_total_N": 8.43665,
+      "wheel_contact_torque_each_Nm": 0.168733,
+      "gearbox_output_torque_each_with_loss_and_factor_Nm": 0.48209428571428575,
+      "assumptions": "equal drive loads, rolling resistance 0.03; efficiency 0.7; selection factor 2; caster scrub/step impact not modeled"
+    },
+    {
+      "wheel_diameter_m": 0.08,
+      "slope_deg": 5,
+      "tractive_force_total_N": 21.671758008045373,
+      "wheel_contact_torque_each_Nm": 0.43343516016090744,
+      "gearbox_output_torque_each_with_loss_and_factor_Nm": 1.2383861718883071,
+      "assumptions": "equal drive loads, rolling resistance 0.03; efficiency 0.7; selection factor 2; caster scrub/step impact not modeled"
+    }
+  ],
+  "screening_sweep": [
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.010606127537088325,
+      "turn_contact_shift_y_m": 0.002545470608901198,
+      "worst_case_contact_x_m": 0.03513244332656201,
+      "worst_case_contact_y_m": 0.0037173515688773756,
+      "remaining_margin_x_m": 0.06986755667343798,
+      "remaining_margin_y_m": 0.19628264843112264,
+      "wind_tip_threshold_with_start_brake_mps": 3.682453643237151,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.010646641221244027,
+      "turn_contact_shift_y_m": 0.002555193893098566,
+      "worst_case_contact_x_m": 0.07158437784514395,
+      "worst_case_contact_y_m": 0.003727074853074744,
+      "remaining_margin_x_m": 0.03341562215485605,
+      "remaining_margin_y_m": 0.19627292514692526,
+      "wind_tip_threshold_with_start_brake_mps": 2.541829403477626,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.046370682548945795,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.010606127537088325,
+      "turn_contact_shift_y_m": 0.002545470608901198,
+      "worst_case_contact_x_m": 0.0815031258755078,
+      "worst_case_contact_y_m": 0.0037173515688773756,
+      "remaining_margin_x_m": 0.02349687412449219,
+      "remaining_margin_y_m": 0.19628264843112264,
+      "wind_tip_threshold_with_start_brake_mps": 3.682453643237151,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.046547811023056905,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.010646641221244027,
+      "turn_contact_shift_y_m": 0.002555193893098566,
+      "worst_case_contact_x_m": 0.11813218886820084,
+      "worst_case_contact_y_m": 0.003727074853074744,
+      "remaining_margin_x_m": -0.013132188868200861,
+      "remaining_margin_y_m": 0.19627292514692526,
+      "wind_tip_threshold_with_start_brake_mps": 2.541829403477626,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.12880745152484943,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.010606127537088325,
+      "turn_contact_shift_y_m": 0.002545470608901198,
+      "worst_case_contact_x_m": 0.16393989485141142,
+      "worst_case_contact_y_m": 0.0037173515688773756,
+      "remaining_margin_x_m": -0.05893989485141145,
+      "remaining_margin_y_m": 0.19628264843112264,
+      "wind_tip_threshold_with_start_brake_mps": 3.682453643237151,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.12929947506404696,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.010646641221244027,
+      "turn_contact_shift_y_m": 0.002555193893098566,
+      "worst_case_contact_x_m": 0.20088385290919092,
+      "worst_case_contact_y_m": 0.003727074853074744,
+      "remaining_margin_x_m": -0.09588385290919091,
+      "remaining_margin_y_m": 0.19627292514692526,
+      "wind_tip_threshold_with_start_brake_mps": 2.541829403477626,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.3297470759036146,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.010606127537088325,
+      "turn_contact_shift_y_m": 0.002545470608901198,
+      "worst_case_contact_x_m": 0.3648795192301766,
+      "worst_case_contact_y_m": 0.0037173515688773756,
+      "remaining_margin_x_m": -0.2598795192301766,
+      "remaining_margin_y_m": 0.19628264843112264,
+      "wind_tip_threshold_with_start_brake_mps": 3.682453643237151,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 0,
+      "mass_kg": 9.5,
+      "center_of_mass_m": [
+        0.024526315789473684,
+        0.001171880959976178,
+        0.4161844445553459
+      ],
+      "static_margin_x_m": 0.08047368421052631,
+      "static_margin_y_m": 0.19882811904002384,
+      "critical_longitudinal_acceleration_no_wind_mps2": 1.8968677287992182,
+      "critical_lateral_acceleration_no_wind_mps2": 4.6866332302894325,
+      "critical_longitudinal_slope_static_deg": 10.943692743253356,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.3310066561639602,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.010646641221244027,
+      "turn_contact_shift_y_m": 0.002555193893098566,
+      "worst_case_contact_x_m": 0.4025910340091041,
+      "worst_case_contact_y_m": 0.003727074853074744,
+      "remaining_margin_x_m": -0.29759103400910414,
+      "remaining_margin_y_m": 0.19627292514692526,
+      "wind_tip_threshold_with_start_brake_mps": 2.541829403477626,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.008794601882315567,
+      "turn_contact_shift_y_m": 0.002110704451755736,
+      "worst_case_contact_x_m": 0.020234601882315566,
+      "worst_case_contact_y_m": 0.003001333981337631,
+      "remaining_margin_x_m": 0.08476539811768444,
+      "remaining_margin_y_m": 0.1969986660186624,
+      "wind_tip_threshold_with_start_brake_mps": 4.652667503511795,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.008828195832764429,
+      "turn_contact_shift_y_m": 0.002118766999863463,
+      "worst_case_contact_x_m": 0.050460549176474974,
+      "worst_case_contact_y_m": 0.0030093965294453583,
+      "remaining_margin_x_m": 0.054539450823525036,
+      "remaining_margin_y_m": 0.19699060347055466,
+      "wind_tip_threshold_with_start_brake_mps": 3.7249479417962843,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.03524171873719881,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.008794601882315567,
+      "turn_contact_shift_y_m": 0.002110704451755736,
+      "worst_case_contact_x_m": 0.05547632061951437,
+      "worst_case_contact_y_m": 0.003001333981337631,
+      "remaining_margin_x_m": 0.04952367938048563,
+      "remaining_margin_y_m": 0.1969986660186624,
+      "wind_tip_threshold_with_start_brake_mps": 4.652667503511795,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.03537633637752325,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.008828195832764429,
+      "turn_contact_shift_y_m": 0.002118766999863463,
+      "worst_case_contact_x_m": 0.08583688555399822,
+      "worst_case_contact_y_m": 0.0030093965294453583,
+      "remaining_margin_x_m": 0.01916311444600178,
+      "remaining_margin_y_m": 0.19699060347055466,
+      "wind_tip_threshold_with_start_brake_mps": 3.7249479417962843,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.09789366315888558,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.008794601882315567,
+      "turn_contact_shift_y_m": 0.002110704451755736,
+      "worst_case_contact_x_m": 0.11812826504120114,
+      "worst_case_contact_y_m": 0.003001333981337631,
+      "remaining_margin_x_m": -0.01312826504120114,
+      "remaining_margin_y_m": 0.1969986660186624,
+      "wind_tip_threshold_with_start_brake_mps": 4.652667503511795,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.0982676010486757,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.008828195832764429,
+      "turn_contact_shift_y_m": 0.002118766999863463,
+      "worst_case_contact_x_m": 0.14872815022515065,
+      "worst_case_contact_y_m": 0.0030093965294453583,
+      "remaining_margin_x_m": -0.04372815022515067,
+      "remaining_margin_y_m": 0.19699060347055466,
+      "wind_tip_threshold_with_start_brake_mps": 3.7249479417962843,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.2506077776867471,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.008794601882315567,
+      "turn_contact_shift_y_m": 0.002110704451755736,
+      "worst_case_contact_x_m": 0.27084237956906265,
+      "worst_case_contact_y_m": 0.003001333981337631,
+      "remaining_margin_x_m": -0.16584237956906264,
+      "remaining_margin_y_m": 0.1969986660186624,
+      "wind_tip_threshold_with_start_brake_mps": 4.652667503511795,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 3,
+      "mass_kg": 12.5,
+      "center_of_mass_m": [
+        0.011439999999999999,
+        0.0008906295295818953,
+        0.3451001778620628
+      ],
+      "static_margin_x_m": 0.09356,
+      "static_margin_y_m": 0.19910937047041813,
+      "critical_longitudinal_acceleration_no_wind_mps2": 2.659585995249344,
+      "critical_lateral_acceleration_no_wind_mps2": 5.659988170436483,
+      "critical_longitudinal_slope_static_deg": 15.168818676188625,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.25156505868460977,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.008828195832764429,
+      "turn_contact_shift_y_m": 0.002118766999863463,
+      "worst_case_contact_x_m": 0.3020256078610848,
+      "worst_case_contact_y_m": 0.0030093965294453583,
+      "remaining_margin_x_m": -0.19702560786108472,
+      "remaining_margin_y_m": 0.19699060347055466,
+      "wind_tip_threshold_with_start_brake_mps": 3.7249479417962843,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0076843119648742,
+      "turn_contact_shift_y_m": 0.0018442348715698078,
+      "worst_case_contact_x_m": 0.011103666803583876,
+      "worst_case_contact_y_m": 0.0025624844922003684,
+      "remaining_margin_x_m": 0.09389633319641613,
+      "remaining_margin_y_m": 0.19743751550779964,
+      "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.00771366478821242,
+      "turn_contact_shift_y_m": 0.0018512795491709806,
+      "worst_case_contact_x_m": 0.03751368644406497,
+      "worst_case_contact_y_m": 0.0025695291698015414,
+      "remaining_margin_x_m": 0.06748631355593504,
+      "remaining_margin_y_m": 0.1974304708301985,
+      "wind_tip_threshold_with_start_brake_mps": 4.614063027506377,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.028420740917095812,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0076843119648742,
+      "turn_contact_shift_y_m": 0.0018442348715698078,
+      "worst_case_contact_x_m": 0.03952440772067969,
+      "worst_case_contact_y_m": 0.0025624844922003684,
+      "remaining_margin_x_m": 0.06547559227932032,
+      "remaining_margin_y_m": 0.19743751550779964,
+      "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.028529303530260685,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.00771366478821242,
+      "turn_contact_shift_y_m": 0.0018512795491709806,
+      "worst_case_contact_x_m": 0.06604298997432564,
+      "worst_case_contact_y_m": 0.0025695291698015414,
+      "remaining_margin_x_m": 0.038957010025674345,
+      "remaining_margin_y_m": 0.1974304708301985,
+      "wind_tip_threshold_with_start_brake_mps": 4.614063027506377,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.07894650254748836,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0076843119648742,
+      "turn_contact_shift_y_m": 0.0018442348715698078,
+      "worst_case_contact_x_m": 0.09005016935107223,
+      "worst_case_contact_y_m": 0.0025624844922003684,
+      "remaining_margin_x_m": 0.014949830648927763,
+      "remaining_margin_y_m": 0.19743751550779964,
+      "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.07924806536183523,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.00771366478821242,
+      "turn_contact_shift_y_m": 0.0018512795491709806,
+      "worst_case_contact_x_m": 0.1167617518059002,
+      "worst_case_contact_y_m": 0.0025695291698015414,
+      "remaining_margin_x_m": -0.011761751805900202,
+      "remaining_margin_y_m": 0.1974304708301985,
+      "wind_tip_threshold_with_start_brake_mps": 4.614063027506377,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.2021030465215702,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0076843119648742,
+      "turn_contact_shift_y_m": 0.0018442348715698078,
+      "worst_case_contact_x_m": 0.2132067133251541,
+      "worst_case_contact_y_m": 0.0025624844922003684,
+      "remaining_margin_x_m": -0.10820671332515408,
+      "remaining_margin_y_m": 0.19743751550779964,
+      "wind_tip_threshold_with_start_brake_mps": 5.4529042685415625,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 6,
+      "mass_kg": 15.5,
+      "center_of_mass_m": [
+        0.0034193548387096767,
+        0.0007182496206305607,
+        0.3015324015016636
+      ],
+      "static_margin_x_m": 0.10158064516129033,
+      "static_margin_y_m": 0.19928175037936946,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.304806130517155,
+      "critical_lateral_acceleration_no_wind_mps2": 6.4833960180920345,
+      "critical_longitudinal_slope_static_deg": 18.61771186799017,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.2028750473262982,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.00771366478821242,
+      "turn_contact_shift_y_m": 0.0018512795491709806,
+      "worst_case_contact_x_m": 0.24038873377036318,
+      "worst_case_contact_y_m": 0.0025695291698015414,
+      "remaining_margin_x_m": -0.13538873377036317,
+      "remaining_margin_y_m": 0.1974304708301985,
+      "wind_tip_threshold_with_start_brake_mps": 4.614063027506377,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0071556024803783105,
+      "turn_contact_shift_y_m": 0.0017173445952907947,
+      "worst_case_contact_x_m": 0.007555602480378311,
+      "worst_case_contact_y_m": 0.0023535085449921484,
+      "remaining_margin_x_m": 0.0974443975196217,
+      "remaining_margin_y_m": 0.19764649145500787,
+      "wind_tip_threshold_with_start_brake_mps": 5.902488771291617,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 0,
+      "wind_force_N": 0.0,
+      "wind_contact_shift_x_m": 0.0,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.007182935719378129,
+      "turn_contact_shift_y_m": 0.0017239045726507513,
+      "worst_case_contact_x_m": 0.03214851371434592,
+      "worst_case_contact_y_m": 0.002360068522352105,
+      "remaining_margin_x_m": 0.07285148628565408,
+      "remaining_margin_y_m": 0.1976399314776479,
+      "wind_tip_threshold_with_start_brake_mps": 5.093872301563939,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.02517265624085629,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0071556024803783105,
+      "turn_contact_shift_y_m": 0.0017173445952907947,
+      "worst_case_contact_x_m": 0.0327282587212346,
+      "worst_case_contact_y_m": 0.0023535085449921484,
+      "remaining_margin_x_m": 0.0722717412787654,
+      "remaining_margin_y_m": 0.19764649145500787,
+      "wind_tip_threshold_with_start_brake_mps": 5.902488771291617,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 3,
+      "wind_force_N": 5.157956771564043,
+      "wind_contact_shift_x_m": 0.025268811698230892,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.007182935719378129,
+      "turn_contact_shift_y_m": 0.0017239045726507513,
+      "worst_case_contact_x_m": 0.05741732541257681,
+      "worst_case_contact_y_m": 0.002360068522352105,
+      "remaining_margin_x_m": 0.04758267458742319,
+      "remaining_margin_y_m": 0.1976399314776479,
+      "wind_tip_threshold_with_start_brake_mps": 5.093872301563939,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.0699240451134897,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0071556024803783105,
+      "turn_contact_shift_y_m": 0.0017173445952907947,
+      "worst_case_contact_x_m": 0.077479647593868,
+      "worst_case_contact_y_m": 0.0023535085449921484,
+      "remaining_margin_x_m": 0.027520352406131994,
+      "remaining_margin_y_m": 0.19764649145500787,
+      "wind_tip_threshold_with_start_brake_mps": 5.902488771291617,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 5,
+      "wind_force_N": 14.32765769878901,
+      "wind_contact_shift_x_m": 0.07019114360619692,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.007182935719378129,
+      "turn_contact_shift_y_m": 0.0017239045726507513,
+      "worst_case_contact_x_m": 0.10233965732054284,
+      "worst_case_contact_y_m": 0.002360068522352105,
+      "remaining_margin_x_m": 0.0026603426794571602,
+      "remaining_margin_y_m": 0.1976399314776479,
+      "wind_tip_threshold_with_start_brake_mps": 5.093872301563939,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.17900555549053362,
+      "adverse_slope_deg": 0,
+      "start_brake_contact_shift_x_m": 0.0071556024803783105,
+      "turn_contact_shift_y_m": 0.0017173445952907947,
+      "worst_case_contact_x_m": 0.18656115797091194,
+      "worst_case_contact_y_m": 0.0023535085449921484,
+      "remaining_margin_x_m": -0.08156115797091193,
+      "remaining_margin_y_m": 0.19764649145500787,
+      "wind_tip_threshold_with_start_brake_mps": 5.902488771291617,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    },
+    {
+      "ballast_kg": 8,
+      "mass_kg": 17.5,
+      "center_of_mass_m": [
+        -0.00040000000000000034,
+        0.0006361639497013538,
+        0.2807858413300449
+      ],
+      "static_margin_x_m": 0.1046,
+      "static_margin_y_m": 0.19936383605029867,
+      "critical_longitudinal_acceleration_no_wind_mps2": 3.6544791401851984,
+      "critical_lateral_acceleration_no_wind_mps2": 6.965305737601513,
+      "critical_longitudinal_slope_static_deg": 20.43166577369337,
+      "front_on_wind_mps": 8,
+      "wind_force_N": 36.67880370889986,
+      "wind_contact_shift_x_m": 0.17968932763186413,
+      "adverse_slope_deg": 5,
+      "start_brake_contact_shift_x_m": 0.007182935719378129,
+      "turn_contact_shift_y_m": 0.0017239045726507513,
+      "worst_case_contact_x_m": 0.21183784134621006,
+      "worst_case_contact_y_m": 0.002360068522352105,
+      "remaining_margin_x_m": -0.10683784134621005,
+      "remaining_margin_y_m": 0.1976399314776479,
+      "wind_tip_threshold_with_start_brake_mps": 5.093872301563939,
+      "criterion": "positive margins only pass this quasi-static assumed-parameter screen; no safety certification"
+    }
+  ],
+  "limitations": [
+    "The four current CAD suitcase wheels are passive, not an implemented drive system.",
+    "Support polygon idealizes swivel caster contact centers; caster offset/contact uncertainty must be measured.",
+    "50 mm matches current wheel diameter; 80 mm is an alternate requiring changed wheel wells and heights.",
+    "Radio loss assumes the motor controller remains powered and executes a verified brake ramp; power loss and controller failure are different.",
+    "No traction/slip, caster scrub, obstacle impact, KT flex, clamp strength, wind gust dynamics, or brake holding has been validated.",
+    "Wind threshold is a mathematical tipping boundary, never an allowed operating wind."
+  ]
+}
