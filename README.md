@@ -16,9 +16,15 @@
 |---|---|
 | [docs/PLAN.md](docs/PLAN.md) | 锁定的方案 |
 | [docs/DIMENSIONS.md](docs/DIMENSIONS.md) | 24 / 26 寸待机尺寸 |
-| [docs/CAD_PROMPT.md](docs/CAD_PROMPT.md) | 本地建模用 prompt（主文件） |
-| [docs/CAD_PROMPT.en.md](docs/CAD_PROMPT.en.md) | 同一 prompt 英文 |
+| [docs/CAD_PROMPT.md](docs/CAD_PROMPT.md) | 整机后续轮次 prompt |
+| [docs/CAD_PROMPT.en.md](docs/CAD_PROMPT.en.md) | 整机后续轮次 prompt（英文） |
 | [docs/ELECTRONICS.md](docs/ELECTRONICS.md) | 电控与防倾 |
+
+本轮入口：[先只出箱子的可粘贴 prompt](docs/PROMPT_CASE_FIRST.md)。本轮仅做 720×470×290 mm 的 26 寸两半箱壳，底壳高 170 mm、箱盖高 120 mm；轮子、底盘、电控和立牌留待下一轮。参数化源文件、STL / STEP 与外形预览放在 [`cad/case26/`](cad/case26/)，尺寸及复现方式见 [`NOTES.md`](cad/case26/NOTES.md)。
+
+![26 寸箱壳首版](cad/case26/case26_preview.png)
+
+[底部平台与后端细节](cad/case26/case26_details.png)
 
 ## 当前锁定
 
